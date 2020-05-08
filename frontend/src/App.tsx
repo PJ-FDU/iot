@@ -68,7 +68,7 @@ function App() {
                 </TableCell>
                 <TableCell>{row.phoneNumber}</TableCell>
                 <TableCell>{
-                  new Date().valueOf() - new Date(row.lastLogTime).valueOf() > 6000000 ?
+                  new Date().valueOf() - new Date(row.lastLogTime).valueOf() > 600000 ?
                     <Chip icon={<CloudOffIcon />} label="离线" color="default" size="small" /> :
                     row.status === 0 ?
                       <Chip icon={<CloudIcon />} label="正常" color="primary" size="small" /> :
