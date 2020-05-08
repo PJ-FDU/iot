@@ -12,5 +12,8 @@ export class Device {
     info: string;
 
     @Column({ nullable: false })
+    status: number;
+
+    @Column({ nullable: false })
     lastLogTime: Date;
 }

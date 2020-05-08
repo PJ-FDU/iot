@@ -18,13 +18,6 @@ export class AppService {
     return await this.devicesRepository.find();
   }
 
-  // async getAllStatus() {
-  //   return await this.devicesRepository
-  //   .createQueryBuilder('device')
-  //   .leftJoinAndSelect(Dlog, 'dlog', 'dlog.deviceId = device.deviceId')
-  //   .getRawMany();
-  // }
-
   async addDevice(phoneNumber: string, info: string) {
     return await this.devicesRepository.insert({ phoneNumber: phoneNumber, info: info, lastLogTime: new Date() })
   }
@@ -32,7 +25,8 @@ export class AppService {
   async setLog(deviceId: number, status: number) {
     const logTime = new Date();
     await this.dlogsRepository.insert({ deviceId: deviceId, status: status, logTime: logTime });
-    return await this.devicesRepository.update({ deviceId: deviceId }, { lastLogTime: logTime });
+    await this.devicesRepository.update({ deviceId: deviceId }, { status: status, lastLogTime: logTime });
+    return { errcode: 0, errmsg: '', data: {} };
   }
 
 
